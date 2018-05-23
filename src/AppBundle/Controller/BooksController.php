@@ -44,6 +44,7 @@ class BooksController extends Controller
         ->add('select', 'b, a')
         ->from('AppBundle:Books', 'b')
         ->leftJoin('AppBundle:Author', 'a', 'WITH', 'a.id=b.author')
+        ->orderby('b.'.$sort['field'], $sort['order'] == 1 ? "ASC" : "DESC" )
         ->where('b.author=a.id')
         ->groupby('b.id')
         ->getQuery()
