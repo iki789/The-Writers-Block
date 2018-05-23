@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Books|The Writers Block{% endblock %}
+
+{% block body %}
+  <h2>Your Books</h2>
+    <a href="{{path('books_create')}}" class="waves-effect waves-light btn">+</a>
+  {% if books is empty %}
+    <h6 style="text-aling:center;">No books to be found.</h6>
+  {% endif %}
+  {% if books|length > 0 %}
+  <table class="highlight responsive-table">
+    <thead>
+      <tr>
+        <th><a href="./?sort=book|{{ (sort.order == -1) ? '1' : '-1' }}">Book</a></th>
+        <th><a href="./?sort=author|{{ (sort.order == -1) ? '1' : '-1' }}">Author</th>
+        <th><a href="./?sort=type|{{ (sort.order == -1) ? '1' : '-1' }}">Type</th>
+        <th><a href="./?sort=year|{{ (sort.order == -1) ? '1' : '-1' }}">Year</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for book in books %}
+      <tr>
+        <td><a href="./?sort=book|1">{{book.title}}</a></td>
+        <td><a href="./?sort=author|1">{{book.author}}</a></td>
+        <td><a href="./?sort=type|1">{{book.type}}</a></td>
+        <td>{{book.year}}</a></td>
+        <td width="10%">
+          <a href="{{path('book_update', {'id': book._id}) }}" class="waves-effect waves-light btn-small blue">Edit</a>
+          <a href="{{path('authors_delete', {'id': book._id}) }}" class="waves-effect waves-light btn-small red lighten-1">x</a> 
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+{% endblock %}

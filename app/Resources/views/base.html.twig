@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+     <nav>
+        <div class="nav-wrapper">
+            <ul id="nav-mobile" class="left  hide-on-med-and-down">
+                <li><a href="{{path('home')}}">Books</a></li>
+                <li><a href="{{path('authors_home')}}">Authors</a></li>
+            </ul>
+        </div>
+    </nav>
+        <div class="container">
+            <div class="row" style="display:flex; justify-content: center; align-items: center; height: 100vh; min-height:320px;">
+                <div class="col s12">
+                {% block body %}{% endblock %}
+                </div>
+            </div>
+        </div>
+        {% block javascripts %}
+        <script
+        src="https://code.jquery.com/jquery-2.2.4.min.js"
+        integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+        <script>
+        $(document).ready(function(){
+        $('select').formSelect();
+        });
+        </script>
+        {% endblock %}
+    </body>
+</html>

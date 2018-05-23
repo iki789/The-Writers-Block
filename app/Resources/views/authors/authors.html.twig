@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Authors|The Writers Block{% endblock %}
+
+{% block body %}
+  <h2>Authors</h2>
+  <a href="{{path('authors_create')}}" class="waves-effect waves-light btn">+</a>
+  {% if authors is empty %}
+    <h6 style="text-aling:center;">No authors to be found.</h6>
+  {% endif %}
+  {% if authors|length > 0 %}
+  <table class="highlight responsive-table">
+    <thead>
+      <tr>
+        <th><a href="./authors?sort=name|{{(sort.order == 1 ? -1 : 1)}}">Author</a></th>
+        <th>Description</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for author in authors %}
+      <tr>
+        <td>{{author.name}}</td>
+        <td>{{author.description}}</td>
+        <td width="10%">
+          <a href="{{path('authors_update', {'id': author.id}) }}" class="waves-effect waves-light btn-small blue">Edit</a>
+          <a href="{{path('authors_delete', {'id': author.id}) }}" class="waves-effect waves-light btn-small red lighten-1">x</a>  
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% endif %}
+{% endblock %}
