@@ -1,4 +1,4 @@
-book_collection
+The Writers Block
 ===============
 
-A Symfony project created on May 23, 2018, 5:10 am.
+Here lies is a basic website created using Symfony 3.4.
